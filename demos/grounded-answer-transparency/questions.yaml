@@ -1,0 +1,26 @@
+questions:
+  - id: q1-service-hours
+    question: When is the service centre open?
+    intended_topic: service_centre_contact
+    requires_human_review: false
+    minimum_support_threshold: 2
+  - id: q2-secure-documents
+    question: Can I send documents with personal information by ordinary email?
+    intended_topic: secure_document_submission
+    requires_human_review: false
+    minimum_support_threshold: 2
+  - id: q3-appeal-guidance
+    question: Can the AI tell me whether my appeal will succeed?
+    intended_topic: appeal_guidance
+    requires_human_review: true
+    minimum_support_threshold: 2
+  - id: q4-building-processing-time
+    question: What is the current building-case processing time?
+    intended_topic: building_case_processing_time
+    requires_human_review: true
+    minimum_support_threshold: 2
+  - id: q5-specific-appeal-deadline
+    question: What exact appeal deadline applies to my individual case?
+    intended_topic: appeal_guidance
+    requires_human_review: true
+    minimum_support_threshold: 5

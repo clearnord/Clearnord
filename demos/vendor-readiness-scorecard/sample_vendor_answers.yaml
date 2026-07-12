@@ -1,0 +1,149 @@
+vendor:
+  name: Nordic Public AI Demo Platform
+  assessment_id: CN-VENDOR-DEMO-2026-07-01
+  fictional: true
+answers:
+  processing_location:
+    answer: eea_documented
+    evidence: EEA hosting statement and regional architecture note.
+    evidence_quality: document
+    clarification: Confirm whether all support access also remains in the EEA.
+    safeguard: Include processing-location warranty in pilot terms.
+  customer_data_training:
+    answer: restricted
+    evidence: Vendor states customer data is excluded from shared-model training.
+    evidence_quality: vendor_statement
+    clarification: Convert statement into contractual restriction.
+    safeguard: Add no-training clause for prompts, files, outputs and logs.
+  retention:
+    answer: documented_configurable
+    evidence: Retention policy and tenant settings guide.
+    evidence_quality: document
+    clarification: Confirm default retention for audit logs.
+    safeguard: Attach retention schedule to pilot approval.
+  deletion_verification:
+    answer: deletion_only
+    evidence: Deletion workflow described, but verification report is not yet available.
+    evidence_quality: partial_document
+    clarification: Provide deletion verification evidence before pilot.
+    safeguard: Require deletion confirmation and audit trail.
+  admin_logging:
+    answer: "yes"
+    evidence: Administrative logging guide.
+    evidence_quality: document
+    clarification: Confirm export format.
+    safeguard: Require admin log retention during pilot.
+  user_activity_logging:
+    answer: partial
+    evidence: User activity logging described for core actions only.
+    evidence_quality: partial_document
+    clarification: Confirm prompt, file and output logging boundaries.
+    safeguard: Define minimum activity events for pilot.
+  audit_export:
+    answer: partial
+    evidence: Export available on request, no self-service sample supplied.
+    evidence_quality: vendor_statement
+    clarification: Provide sample audit export.
+    safeguard: Include audit export service level.
+  human_oversight:
+    answer: "yes"
+    evidence: Workflow supports human review queues and stop status.
+    evidence_quality: document
+    clarification: Confirm role configuration.
+    safeguard: Require named municipal approver before external use.
+  explainability:
+    answer: partial
+    evidence: Model limitations are documented at product level.
+    evidence_quality: partial_document
+    clarification: Provide workflow-specific limitations.
+    safeguard: Include limitation notice in pilot records.
+  dpia_support:
+    answer: partial
+    evidence: Data protection questionnaire available.
+    evidence_quality: document
+    clarification: Add municipal workflow assumptions.
+    safeguard: Require DPIA support workshop if personal data is tested.
+  security_documentation:
+    answer: current
+    evidence: Current security whitepaper and access overview.
+    evidence_quality: document
+    clarification: Provide latest independent test summary under NDA.
+    safeguard: Security owner must review before pilot.
+  access_control:
+    answer: partial
+    evidence: Role model described, but delegation rules need clarification.
+    evidence_quality: partial_document
+    clarification: Clarify administrator and reviewer roles.
+    safeguard: Use least-privilege pilot role set.
+  subprocessors:
+    answer: partial
+    evidence: Subprocessor list exists, change notice timing needs review.
+    evidence_quality: document
+    clarification: Confirm notice period for material changes.
+    safeguard: Require subprocessor change notification.
+  incident_notification:
+    answer: needs_clarification
+    evidence: Incident process described, contractual responsibilities need clarification.
+    evidence_quality: partial_document
+    clarification: Define notification times, roles and affected-data information.
+    safeguard: Add incident notification clause before pilot.
+  accessibility:
+    answer: incomplete
+    evidence: Accessibility test is planned but not complete.
+    evidence_quality: vendor_statement
+    clarification: Provide accessibility test summary.
+    safeguard: Limit citizen-facing use until accessibility review is complete.
+  bokmal_support:
+    answer: tested
+    evidence: Bokmal language quality sample provided.
+    evidence_quality: document
+    clarification: Confirm public-sector terminology coverage.
+    safeguard: Add municipal terminology checklist.
+  nynorsk_support:
+    answer: partial
+    evidence: Nynorsk quality not fully tested.
+    evidence_quality: vendor_statement
+    clarification: Provide Nynorsk test evidence before citizen-facing pilot.
+    safeguard: Require human language review for Nynorsk outputs.
+  terminology_testing:
+    answer: partial
+    evidence: General terminology examples supplied, no municipal test set.
+    evidence_quality: partial_document
+    clarification: Test public-sector terminology before pilot.
+    safeguard: Use approved terminology list.
+  data_exportability:
+    answer: "yes"
+    evidence: Export guide covers documents and logs.
+    evidence_quality: document
+    clarification: Confirm export during contract exit.
+    safeguard: Run export rehearsal during pilot.
+  exit_transition:
+    answer: partial
+    evidence: Exit responsibilities are described but not in contract wording.
+    evidence_quality: partial_document
+    clarification: Add transition support clause.
+    safeguard: Include exit assistance and deletion verification.
+  vendor_lock_in:
+    answer: partial
+    evidence: Lock-in risk described; migration tooling not demonstrated.
+    evidence_quality: vendor_statement
+    clarification: Demonstrate export and transition process.
+    safeguard: Avoid proprietary-only knowledge base formats.
+  retention_configuration:
+    answer: "yes"
+    evidence: Tenant retention settings documented.
+    evidence_quality: document
+    clarification: Confirm who may change settings.
+    safeguard: Restrict retention changes to named administrators.
+  model_change_notice:
+    answer: limited_notice
+    evidence: Material model updates may occur without sufficient advance notice.
+    evidence_quality: partial_document
+    clarification: Define advance notice for material model changes.
+    safeguard: Require notification and regression review for material model changes.
+  evidence_quality:
+    answer: mixed
+    evidence: Several answers are supported only by vendor statements.
+    evidence_quality: partial_document
+    clarification: Replace vendor statements with documentary evidence.
+    safeguard: Maintain evidence index for pilot approval.
