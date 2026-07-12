@@ -5,7 +5,7 @@
 - Suite run ID: `CN-GOVERNANCE-SUITE-2026-07-01`
 - Framework path: `frameworks/public-sector-ai-language-governance.md`
 - Generators succeeded: 5 of 5
-- Test status: Succeeded
+- Test status: Tests are run by `make test` after report generation.
 
 ## Demos
 
@@ -62,11 +62,10 @@ Pass rate: 68.8%
 
 ## Test Summary
 
-- Command: `python -m pytest demos/ai-language-exposure-register/tests demos/norwegian-language-controls/tests demos/vendor-readiness-scorecard/tests demos/grounded-answer-transparency/tests demos/red-team-evaluation-kit/tests --basetemp=.pytest_cache/basetemp -q`
-- Status: Succeeded
-- Return code: 0
-- Output: .............................................                            [100%]
-45 passed in 0.44s
+- Command: `python -m pytest demos/ai-language-exposure-register/tests demos/norwegian-language-controls/tests demos/vendor-readiness-scorecard/tests demos/grounded-answer-transparency/tests demos/red-team-evaluation-kit/tests --basetemp=.pytest-basetemp -q`
+- Status: Tests are run by `make test` after report generation.
+- Return code: Not recorded by `run_all.py`
+- Output: See the separate `make test` command or GitHub Actions test step.
 
 ## Deterministic Execution Statement
 

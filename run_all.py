@@ -11,6 +11,8 @@ from pathlib import Path
 SUITE_RUN_ID = "CN-GOVERNANCE-SUITE-2026-07-01"
 FRAMEWORK_PATH = Path("frameworks/public-sector-ai-language-governance.md")
 REPORT_PATH = Path("SUITE_REPORT.md")
+EXPOSURE_REGISTER_NEWLINE = "\r\n"
+DEFAULT_REPORT_NEWLINE = "\n"
 DISCLAIMER = (
     "This deterministic demonstration supports early governance and assurance\n"
     "work. It does not provide legal advice, compliance certification, a final\n"
@@ -27,6 +29,7 @@ class Demo:
     directory: Path
     generator: Path
     report: Path
+    newline: str = DEFAULT_REPORT_NEWLINE
 
 
 @dataclass(frozen=True)
@@ -36,13 +39,20 @@ class CommandResult:
     label: str
     command: list[str]
     returncode: int
-    output: str
+    stdout: str
+    stderr: str
 
     @property
     def status(self) -> str:
         """Return a human-readable command status."""
 
         return "Succeeded" if self.returncode == 0 else "Failed"
+
+    @property
+    def output(self) -> str:
+        """Return combined command output for the Markdown report."""
+
+        return "\n".join(part for part in (self.stdout, self.stderr) if part)
 
 
 DEMOS = [
@@ -51,6 +61,7 @@ DEMOS = [
         Path("demos/ai-language-exposure-register"),
         Path("demos/ai-language-exposure-register/generate_register.py"),
         Path("demos/ai-language-exposure-register/EXPOSURE_REGISTER.md"),
+        EXPOSURE_REGISTER_NEWLINE,
     ),
     Demo(
         "Norwegian language controls",
@@ -78,8 +89,8 @@ DEMOS = [
     ),
 ]
 
-TEST_COMMAND = [
-    sys.executable,
+TEST_COMMAND_DISPLAY = [
+    "python",
     "-m",
     "pytest",
     "demos/ai-language-exposure-register/tests",
@@ -87,9 +98,10 @@ TEST_COMMAND = [
     "demos/vendor-readiness-scorecard/tests",
     "demos/grounded-answer-transparency/tests",
     "demos/red-team-evaluation-kit/tests",
-    "--basetemp=.pytest_cache/basetemp",
+    "--basetemp=.pytest-basetemp",
     "-q",
 ]
+TEST_SUMMARY = "Tests are run by `make test` after report generation."
 
 
 def run_command(label: str, command: list[str], display_command: list[str] | None = None) -> CommandResult:
@@ -101,13 +113,14 @@ def run_command(label: str, command: list[str], display_command: list[str] | Non
         capture_output=True,
         text=True,
     )
-    output = "\n".join(part.strip() for part in (completed.stdout, completed.stderr) if part.strip())
-    output = output.replace("\\", "/")
+    stdout = completed.stdout.strip().replace("\\", "/")
+    stderr = completed.stderr.strip().replace("\\", "/")
     return CommandResult(
         label=label,
         command=display_command or command,
         returncode=completed.returncode,
-        output=output,
+        stdout=stdout,
+        stderr=stderr,
     )
 
 
@@ -124,10 +137,27 @@ def run_generators() -> list[CommandResult]:
     ]
 
 
-def run_tests() -> CommandResult:
-    """Run the full deterministic demo test suite."""
+def normalise_demo_reports() -> None:
+    """Rewrite generated demo reports with stable committed line endings."""
 
-    return run_command("pytest", TEST_COMMAND, ["python", *TEST_COMMAND[1:]])
+    for demo in DEMOS:
+        text = demo.report.read_text(encoding="utf-8")
+        demo.report.write_text(text, encoding="utf-8", newline=demo.newline)
+
+
+def print_failure_details(results: list[CommandResult]) -> None:
+    """Print full generator diagnostics when a generator fails."""
+
+    for result in results:
+        if result.returncode == 0:
+            continue
+        print(f"Generator failed: {result.label}", file=sys.stderr)
+        print(f"Command: {' '.join(result.command)}", file=sys.stderr)
+        print(f"Return code: {result.returncode}", file=sys.stderr)
+        print("Stdout:", file=sys.stderr)
+        print(result.stdout or "No stdout", file=sys.stderr)
+        print("Stderr:", file=sys.stderr)
+        print(result.stderr or "No stderr", file=sys.stderr)
 
 
 def bullet_list(items: list[str]) -> list[str]:
@@ -136,7 +166,7 @@ def bullet_list(items: list[str]) -> list[str]:
     return [f"- {item}" for item in items] if items else ["- None"]
 
 
-def render_report(generator_results: list[CommandResult], test_result: CommandResult) -> str:
+def render_report(generator_results: list[CommandResult]) -> str:
     """Render the deterministic suite report."""
 
     generator_by_name = {result.label: result for result in generator_results}
@@ -149,7 +179,7 @@ def render_report(generator_results: list[CommandResult], test_result: CommandRe
         f"- Suite run ID: `{SUITE_RUN_ID}`",
         f"- Framework path: `{FRAMEWORK_PATH.as_posix()}`",
         f"- Generators succeeded: {len(generator_results) - len(failed_generators)} of {len(generator_results)}",
-        f"- Test status: {test_result.status}",
+        f"- Test status: {TEST_SUMMARY}",
         "",
         "## Demos",
         "",
@@ -184,10 +214,10 @@ def render_report(generator_results: list[CommandResult], test_result: CommandRe
         [
             "## Test Summary",
             "",
-            f"- Command: `{' '.join(test_result.command)}`",
-            f"- Status: {test_result.status}",
-            f"- Return code: {test_result.returncode}",
-            f"- Output: {test_result.output or 'No output'}",
+            f"- Command: `{' '.join(TEST_COMMAND_DISPLAY)}`",
+            f"- Status: {TEST_SUMMARY}",
+            "- Return code: Not recorded by `run_all.py`",
+            "- Output: See the separate `make test` command or GitHub Actions test step.",
             "",
             "## Deterministic Execution Statement",
             "",
@@ -218,15 +248,15 @@ def render_report(generator_results: list[CommandResult], test_result: CommandRe
 
 
 def main() -> int:
-    """Run generators, run tests, write the suite report and return status."""
+    """Run generators, write the suite report and return generator status."""
 
     generator_results = run_generators()
-    test_result = run_tests()
-    REPORT_PATH.write_text(render_report(generator_results, test_result), encoding="utf-8")
+    if not any(result.returncode != 0 for result in generator_results):
+        normalise_demo_reports()
+    REPORT_PATH.write_text(render_report(generator_results), encoding="utf-8", newline="\n")
     if any(result.returncode != 0 for result in generator_results):
+        print_failure_details(generator_results)
         return 1
-    if test_result.returncode != 0:
-        return test_result.returncode
     return 0
 
 

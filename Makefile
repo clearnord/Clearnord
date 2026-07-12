@@ -23,11 +23,11 @@ test:
 		demos/vendor-readiness-scorecard/tests \
 		demos/grounded-answer-transparency/tests \
 		demos/red-team-evaluation-kit/tests \
-		--basetemp=.pytest_cache/basetemp \
+		--basetemp=.pytest-basetemp \
 		-q
 
 verify: generate test
 	git diff --exit-code -- $(GENERATED_REPORTS)
 
 clean:
-	$(PYTHON) -c "from pathlib import Path; import shutil; [shutil.rmtree(p, ignore_errors=True) for p in Path('.').rglob('__pycache__')]; shutil.rmtree('.pytest_cache', ignore_errors=True)"
+	$(PYTHON) -c "from pathlib import Path; import shutil; [shutil.rmtree(p, ignore_errors=True) for p in Path('.').rglob('__pycache__')]; shutil.rmtree('.pytest_cache', ignore_errors=True); shutil.rmtree('.pytest-basetemp', ignore_errors=True)"
