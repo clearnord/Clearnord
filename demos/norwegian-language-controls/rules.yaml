@@ -1,0 +1,103 @@
+controls:
+  - id: LNG-01
+    title: Defined audience and language requirement
+    why_it_matters: Text should identify who it is for and which written standard or language requirement applies.
+  - id: LNG-02
+    title: Terminology and naming consistency
+    why_it_matters: Inconsistent names can reduce trust and make service routing harder to follow.
+  - id: LNG-03
+    title: Written-standard consistency
+    why_it_matters: Mixed written-standard signals can confuse readers and should be reviewed before publication.
+  - id: LNG-04
+    title: Plain-language summary
+    why_it_matters: A short summary helps residents understand the main message before details.
+  - id: LNG-05
+    title: Clear next step
+    why_it_matters: Citizen-facing service text should explain what the reader should do next when action is expected.
+  - id: LNG-06
+    title: Clear responsibility and timing
+    why_it_matters: Named responsibility and concrete timing support accountability and predictable service follow-up.
+  - id: LNG-07
+    title: Separation of internal and public content
+    why_it_matters: Internal notes in public text can expose process material and reduce public trust.
+  - id: LNG-08
+    title: Bureaucratic wording early warning
+    why_it_matters: Administrative expressions can make public-sector text harder to understand.
+  - id: HUM-01
+    title: Human review requirement
+    why_it_matters: High-severity language findings should route to accountable human review before publication.
+  - id: AUD-01
+    title: Traceable report result
+    why_it_matters: Findings should be stable, documented and easy to review later.
+
+metadata_required:
+  - document_id
+  - title
+  - intended_audience
+  - language_standard
+  - publication_channel
+  - citizen_facing
+  - requires_next_step
+  - content_owner
+  - human_review_required
+
+allowed_severities:
+  - info
+  - low
+  - medium
+  - high
+
+written_standard_indicators:
+  bokmal:
+    - dokumentene
+    - behandlet
+    - søknaden
+    - gjelder
+    - vurderes
+  nynorsk:
+    - samandrag
+    - saka
+    - dokumenta
+    - handsama
+    - gjeld
+    - vurderast
+
+bureaucratic_terms:
+  - term: vedrørende
+    suggestion: Use "om" when that keeps the meaning.
+  - term: angående
+    suggestion: Use "om" or name the topic directly.
+  - term: foreligger
+    suggestion: Use "finnes" or explain what is available.
+  - term: iverksette
+    suggestion: Use "starte" or "sette i gang" when suitable.
+  - term: på nåværende tidspunkt
+    suggestion: Use "nå" or give a concrete date.
+  - term: i henhold til
+    suggestion: Use "etter" or name the source requirement clearly.
+
+vague_timing:
+  - senere
+  - snarest
+  - etter hvert
+  - så snart som mulig
+
+internal_markers:
+  - INTERN MERKNAD
+  - KUN INTERNT
+  - TODO
+  - saksbehandler bør
+
+passive_patterns:
+  - blir vurdert
+  - bli behandlet
+  - vil bli behandlet
+  - det vurderes
+  - det bes om
+  - det er besluttet
+
+responsibility_warnings:
+  - ansvarlig enhet er ikke avklart
+  - ansvar er ikke avklart
+  - det vurderes
+  - det bes om
