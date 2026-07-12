@@ -1,0 +1,275 @@
+systems:
+  - id: internal-document-assistant
+    system_name: Internal document assistant
+    business_owner: Digital service coordinator, fictional municipality
+    service_area: Internal administration
+    purpose: Support employees with drafting, restructuring and summarising internal policy and meeting material.
+    workflow: Internal drafting support before human review and ordinary document approval.
+    target_users:
+      - municipal employees
+      - service managers
+    affected_groups:
+      - municipal employees
+      - internal decision makers
+    languages:
+      - Norwegian Bokmal
+      - Norwegian Nynorsk
+      - English
+    document_types:
+      - meeting notes
+      - internal policy drafts
+      - administrative guidance
+    data_categories:
+      - internal administrative information
+      - non-sensitive operational notes
+    personal_data: false
+    special_category_data: false
+    confidential_information: true
+    provider_type: municipality-managed approved SaaS
+    processing_location: EEA-hosted environment with municipal tenant controls
+    approved_tools:
+      - approved internal language assistant
+    source_requirements: Approved internal source documents must be linked in the work item.
+    human_review: Required before internal publication or management use.
+    authorised_approver: Unit manager or delegated document owner
+    automated_decision_impact: None
+    dpia_review: Not required for current low-volume internal drafting scope.
+    procurement_status: Existing approved internal tool, pilot conditions documented.
+    governance_priority: Medium
+    approved_use_status: Approved with conditions
+    risk_note: Use is limited to drafting support; employees remain responsible for accuracy, tone and source checks.
+    applicable_controls:
+      - GOV-01
+      - GOV-02
+      - GOV-03
+      - DAT-01
+      - DAT-02
+      - DAT-03
+      - HUM-01
+      - HUM-02
+      - HUM-03
+      - LNG-01
+      - LNG-02
+      - VEN-01
+      - VEN-02
+      - AUD-01
+      - AUD-02
+      - EVA-01
+    known_limitations:
+      - May over-summarise nuance in internal discussions.
+      - Must not be used for employee performance assessments.
+    mitigation_measures:
+      - Require source links for all summaries.
+      - Keep human approval in the ordinary document workflow.
+      - Exclude personnel matters from the pilot.
+    monitoring_owner: Internal governance coordinator
+    review_frequency: Quarterly during pilot
+    lifecycle_status: Pre-pilot
+    last_review_date: 2026-05-15
+    next_review_date: 2026-08-15
+
+  - id: citizen-service-chatbot
+    system_name: Citizen-service chatbot
+    business_owner: Service desk lead, fictional municipality
+    service_area: Citizen service and front desk
+    purpose: Answer common service questions and route citizens to approved municipal information pages.
+    workflow: Public-facing question answering with scripted fallback to human service desk.
+    target_users:
+      - residents
+      - visitors
+      - service desk employees
+    affected_groups:
+      - residents seeking municipal services
+      - users with limited Norwegian proficiency
+      - users needing accessible language
+    languages:
+      - Norwegian Bokmal
+      - Norwegian Nynorsk
+      - English
+    document_types:
+      - service descriptions
+      - opening hours
+      - application guidance
+      - contact-routing text
+    data_categories:
+      - public service information
+      - optional user-provided contact context
+    personal_data: true
+    special_category_data: false
+    confidential_information: false
+    provider_type: external managed service without named vendor in demo
+    processing_location: EEA processing declared; evidence to be confirmed before pilot expansion
+    approved_tools:
+      - approved chatbot sandbox
+      - approved municipal knowledge base
+    source_requirements: Responses must be grounded in approved public web pages and service desk scripts.
+    human_review: Human handoff required for complex, individual or rights-affecting questions.
+    authorised_approver: Head of citizen service
+    automated_decision_impact: None; chatbot may not decide eligibility, priority or entitlement.
+    dpia_review: Screening completed; full DPIA required before processing free-text personal data at scale.
+    procurement_status: Pre-procurement market dialogue
+    governance_priority: Medium
+    approved_use_status: Approved with conditions
+    risk_note: Public-facing language quality and fallback behavior must be monitored closely before broader deployment.
+    applicable_controls:
+      - GOV-01
+      - GOV-02
+      - GOV-03
+      - DAT-01
+      - DAT-02
+      - DAT-03
+      - HUM-01
+      - HUM-02
+      - HUM-03
+      - LNG-01
+      - LNG-02
+      - VEN-01
+      - AUD-01
+      - AUD-02
+      - EVA-01
+    known_limitations:
+      - May misunderstand vague service questions.
+      - Must not request national identity numbers, health details or case-specific facts.
+      - Processing-location evidence is not yet complete.
+    mitigation_measures:
+      - Use approved source pages only.
+      - Display clear no-decision notice.
+      - Route uncertain or personal questions to human service desk.
+      - Complete processing-location evidence before extended pilot.
+    monitoring_owner: Citizen service quality lead
+    review_frequency: Monthly during public pilot
+    lifecycle_status: Pre-pilot
+    last_review_date: 2026-06-10
+    next_review_date: 2026-07-20
+
+  - id: case-summary-assistant
+    system_name: Case-summary assistant
+    business_owner: Casework improvement lead, fictional municipality
+    service_area: Welfare and individual services
+    purpose: Summarise case material for caseworkers before meetings or draft decisions.
+    workflow: Proposed summarisation of individual case records; not approved for operational use.
+    target_users:
+      - caseworkers
+      - specialist advisers
+    affected_groups:
+      - residents with individual service cases
+      - vulnerable residents
+      - guardians or family contacts mentioned in case material
+    languages:
+      - Norwegian Bokmal
+      - Norwegian Nynorsk
+    document_types:
+      - case notes
+      - application material
+      - professional assessments
+      - meeting summaries
+    data_categories:
+      - personal data
+      - special-category data
+      - confidential case information
+    personal_data: true
+    special_category_data: true
+    confidential_information: true
+    provider_type: proposed external AI service without completed procurement controls
+    processing_location: Not documented
+    approved_tools: []
+    source_requirements: Source traceability design is not approved.
+    human_review: No approved human review workflow.
+    authorised_approver: None assigned
+    automated_decision_impact: Potential impact if summaries influence rights-affecting case decisions; not approved.
+    dpia_review: Required but not completed.
+    procurement_status: Not ready for procurement or pilot
+    governance_priority: Critical
+    approved_use_status: Not approved
+    risk_note: Stop condition triggered because sensitive case material lacks approved processing route, human oversight and source traceability.
+    applicable_controls:
+      - GOV-01
+      - GOV-02
+      - DAT-01
+      - DAT-02
+      - LNG-01
+    known_limitations:
+      - Cannot verify all facts against approved case sources.
+      - Missing approved route for special-category data.
+      - Missing accountable approval and escalation design.
+    mitigation_measures:
+      - Do not pilot with real case data.
+      - Complete DPIA and procurement controls before any test with operational material.
+      - Design source traceability and mandatory caseworker review.
+      - Use synthetic or fully anonymised material for any early demonstration.
+    monitoring_owner: Service governance board
+    review_frequency: Before any renewed proposal
+    lifecycle_status: Stopped
+    last_review_date: 2026-04-01
+    next_review_date: 2026-06-15
+
+  - id: language-simplification-assistant
+    system_name: Language simplification assistant
+    business_owner: Communications lead, fictional municipality
+    service_area: Public communication
+    purpose: Simplify approved municipal text so public information is easier to understand.
+    workflow: Language simplification of already-approved public information followed by communications review.
+    target_users:
+      - communications employees
+      - service-area content owners
+    affected_groups:
+      - residents reading municipal guidance
+      - residents with limited administrative vocabulary
+      - residents using translated support material
+    languages:
+      - Norwegian Bokmal
+      - Norwegian Nynorsk
+      - English
+      - Plain language variant
+    document_types:
+      - public guidance text
+      - application instructions
+      - service descriptions
+    data_categories:
+      - public information
+      - non-personal service text
+    personal_data: false
+    special_category_data: false
+    confidential_information: false
+    provider_type: municipality-managed approved language tool
+    processing_location: EEA-hosted environment with no personal data in prompt
+    approved_tools:
+      - approved plain-language assistant
+    source_requirements: Only approved public source text may be simplified.
+    human_review: Communications review required before publication.
+    authorised_approver: Communications editor
+    automated_decision_impact: None
+    dpia_review: Not required for public non-personal text scope.
+    procurement_status: Existing approved tool for controlled content work
+    governance_priority: Medium
+    approved_use_status: Approved with conditions
+    risk_note: Medium-priority public-language use when limited to approved public source text and human editorial review.
+    applicable_controls:
+      - GOV-01
+      - GOV-02
+      - GOV-03
+      - DAT-01
+      - DAT-02
+      - DAT-03
+      - HUM-01
+      - HUM-02
+      - HUM-03
+      - LNG-01
+      - LNG-02
+      - VEN-01
+      - VEN-02
+      - AUD-01
+      - AUD-02
+      - EVA-01
+    known_limitations:
+      - Simplification can remove legally important nuance.
+      - Translated support text may need separate language review.
+    mitigation_measures:
+      - Compare simplified text with approved source before publication.
+      - Keep legal or rights-related wording under content-owner approval.
+      - Use terminology checklist for service-specific terms.
+    monitoring_owner: Communications quality coordinator
+    review_frequency: Quarterly
+    lifecycle_status: Pre-pilot
+    last_review_date: 2026-06-01
+    next_review_date: 2026-09-01

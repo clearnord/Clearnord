@@ -1,0 +1,247 @@
+assessment:
+  id: CN-VENDOR-DEMO-2026-07-01
+  title: Public-sector AI vendor readiness scorecard
+  result_thresholds:
+    green: 80
+    yellow: 60
+questions:
+  - id: processing_location
+    control_id: VEN-02
+    domain: Data processing
+    question: Is the processing location documented for public-sector customer data?
+    weight: 7
+    acceptable_answers: [eea_documented, non_eea_documented, unknown]
+    scores: {eea_documented: 1.0, non_eea_documented: 0.5, unknown: 0.0}
+    evidence_required: Processing-location documentation and hosting-region evidence.
+    hard_stop_condition: unknown
+    rationale: Processing-location evidence is required before broader use.
+  - id: customer_data_training
+    control_id: VEN-03
+    domain: Data processing
+    question: Is customer data excluded from shared-model training by default?
+    weight: 8
+    acceptable_answers: [restricted, configurable, shared_training]
+    scores: {restricted: 1.0, configurable: 0.5, shared_training: 0.0}
+    evidence_required: Contractual or technical documentation for training restrictions.
+    hard_stop_condition: shared_training
+    rationale: Shared-model training with public-sector customer data is a stop condition.
+  - id: retention
+    control_id: VEN-04
+    domain: Data lifecycle
+    question: Is retention documented and configurable by the customer?
+    weight: 5
+    acceptable_answers: [documented_configurable, documented_fixed, unclear]
+    scores: {documented_configurable: 1.0, documented_fixed: 0.5, unclear: 0.0}
+    evidence_required: Retention policy and customer configuration guide.
+    hard_stop_condition: null
+    rationale: Retention must fit the approved processing route.
+  - id: deletion_verification
+    control_id: VEN-04
+    domain: Data lifecycle
+    question: Can deletion be performed and verified?
+    weight: 8
+    acceptable_answers: [verified, deletion_only, cannot_confirm]
+    scores: {verified: 1.0, deletion_only: 0.5, cannot_confirm: 0.0}
+    evidence_required: Deletion procedure and verification evidence.
+    hard_stop_condition: cannot_confirm
+    rationale: Deletion without confirmation is not enough for accountable lifecycle control.
+  - id: admin_logging
+    control_id: AUD-01
+    domain: Auditability
+    question: Are administrative actions logged?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Administrative logging documentation.
+    hard_stop_condition: null
+    rationale: Administrative logging supports accountability.
+  - id: user_activity_logging
+    control_id: AUD-01
+    domain: Auditability
+    question: Are user activities logged for review?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: User activity logging documentation.
+    hard_stop_condition: null
+    rationale: Activity records support review and incident handling.
+  - id: audit_export
+    control_id: AUD-02
+    domain: Auditability
+    question: Can audit evidence be exported?
+    weight: 5
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Audit export guide and sample export.
+    hard_stop_condition: null
+    rationale: Audit evidence must be portable and reviewable.
+  - id: human_oversight
+    control_id: HUM-01
+    domain: Human oversight
+    question: Does the platform support human review, intervention and stop authority?
+    weight: 8
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Human oversight workflow documentation.
+    hard_stop_condition: "no"
+    rationale: Human accountability is required by the governance framework.
+  - id: explainability
+    control_id: VEN-01
+    domain: Model transparency
+    question: Are model limitations and explainability boundaries documented?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Model limitations and transparency documentation.
+    hard_stop_condition: null
+    rationale: Known limitations must be visible before pilot use.
+  - id: dpia_support
+    control_id: VEN-01
+    domain: Governance support
+    question: Does the vendor provide DPIA documentation support?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: DPIA support pack or data protection questionnaire.
+    hard_stop_condition: null
+    rationale: DPIA support helps public-sector review but is not itself a DPIA.
+  - id: security_documentation
+    control_id: SEC-01
+    domain: Security
+    question: Is current security documentation available?
+    weight: 8
+    acceptable_answers: [current, limited, unavailable]
+    scores: {current: 1.0, limited: 0.5, unavailable: 0.0}
+    evidence_required: Current security documentation or security pack.
+    hard_stop_condition: unavailable
+    rationale: Current security evidence is required before a controlled pilot.
+  - id: access_control
+    control_id: SEC-02
+    domain: Security
+    question: Is access-control documentation available?
+    weight: 5
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Role, permission and authentication documentation.
+    hard_stop_condition: null
+    rationale: Access controls must be reviewable before use.
+  - id: subprocessors
+    control_id: VEN-05
+    domain: Vendor transparency
+    question: Are subprocessors documented and change notifications available?
+    weight: 5
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Subprocessor list and change-notification process.
+    hard_stop_condition: null
+    rationale: Subprocessor transparency supports procurement and data protection review.
+  - id: incident_notification
+    control_id: VEN-06
+    domain: Incident readiness
+    question: Is there an incident-notification commitment?
+    weight: 8
+    acceptable_answers: [contractual, needs_clarification, none]
+    scores: {contractual: 1.0, needs_clarification: 0.5, none: 0.0}
+    evidence_required: Contractual notification terms and operational contact route.
+    hard_stop_condition: none
+    rationale: Incident notification is required before public-sector pilot use.
+  - id: accessibility
+    control_id: LNG-01
+    domain: Language and accessibility
+    question: Is accessibility documentation available?
+    weight: 4
+    acceptable_answers: [tested, incomplete, none]
+    scores: {tested: 1.0, incomplete: 0.5, none: 0.0}
+    evidence_required: Accessibility statement or test summary.
+    hard_stop_condition: null
+    rationale: Accessibility evidence supports citizen-facing readiness.
+  - id: bokmal_support
+    control_id: LNG-01
+    domain: Language and accessibility
+    question: Is Norwegian Bokmal support tested?
+    weight: 3
+    acceptable_answers: [tested, partial, "no"]
+    scores: {tested: 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Norwegian Bokmal quality test evidence.
+    hard_stop_condition: null
+    rationale: Language quality is part of controlled multilingual governance.
+  - id: nynorsk_support
+    control_id: LNG-01
+    domain: Language and accessibility
+    question: Is Norwegian Nynorsk support tested?
+    weight: 3
+    acceptable_answers: [tested, partial, "no"]
+    scores: {tested: 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Norwegian Nynorsk quality test evidence.
+    hard_stop_condition: null
+    rationale: Nynorsk support must be evidenced for relevant public-sector use.
+  - id: terminology_testing
+    control_id: LNG-01
+    domain: Language and accessibility
+    question: Has public-sector terminology been tested?
+    weight: 4
+    acceptable_answers: [tested, partial, "no"]
+    scores: {tested: 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Public-sector terminology test report.
+    hard_stop_condition: null
+    rationale: Terminology quality affects trust and meaning preservation.
+  - id: data_exportability
+    control_id: VEN-07
+    domain: Exit and portability
+    question: Can customer data and audit records be exported?
+    weight: 5
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Export format and procedure documentation.
+    hard_stop_condition: null
+    rationale: Exportability reduces lock-in and supports auditability.
+  - id: exit_transition
+    control_id: VEN-07
+    domain: Exit and portability
+    question: Are contract exit and transition responsibilities documented?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Exit plan or contract transition clause.
+    hard_stop_condition: null
+    rationale: Exit planning is part of procurement readiness.
+  - id: vendor_lock_in
+    control_id: VEN-07
+    domain: Exit and portability
+    question: Are lock-in risks documented and mitigated?
+    weight: 3
+    acceptable_answers: [mitigated, partial, "no"]
+    scores: {mitigated: 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Lock-in risk statement and mitigation plan.
+    hard_stop_condition: null
+    rationale: Lock-in risks should be explicit before procurement.
+  - id: retention_configuration
+    control_id: VEN-04
+    domain: Data lifecycle
+    question: Can customers configure retention settings?
+    weight: 4
+    acceptable_answers: ["yes", partial, "no"]
+    scores: {"yes": 1.0, partial: 0.5, "no": 0.0}
+    evidence_required: Retention configuration guide.
+    hard_stop_condition: null
+    rationale: Customer-configurable retention supports controlled processing.
+  - id: model_change_notice
+    control_id: VEN-01
+    domain: Model transparency
+    question: Are material model changes notified in advance?
+    weight: 5
+    acceptable_answers: [advance_notice, limited_notice, no_notice]
+    scores: {advance_notice: 1.0, limited_notice: 0.5, no_notice: 0.0}
+    evidence_required: Model-change notification policy.
+    hard_stop_condition: null
+    rationale: Material changes affect review, monitoring and residual risk.
+  - id: evidence_quality
+    control_id: VEN-01
+    domain: Governance support
+    question: Is the evidence mostly documentary rather than unsupported statements?
+    weight: 5
+    acceptable_answers: [documentary, mixed, statements_only]
+    scores: {documentary: 1.0, mixed: 0.5, statements_only: 0.0}
+    evidence_required: Evidence index with document references.
+    hard_stop_condition: null
+    rationale: Evidence quality determines whether governance records can be trusted.

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClearNord AI and Language Exposure Register Demo Schema",
+  "type": "object",
+  "required": ["systems"],
+  "properties": {
+    "systems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "system_name",
+          "business_owner",
+          "service_area",
+          "purpose",
+          "workflow",
+          "target_users",
+          "affected_groups",
+          "languages",
+          "document_types",
+          "data_categories",
+          "personal_data",
+          "special_category_data",
+          "confidential_information",
+          "provider_type",
+          "processing_location",
+          "approved_tools",
+          "source_requirements",
+          "human_review",
+          "authorised_approver",
+          "automated_decision_impact",
+          "dpia_review",
+          "procurement_status",
+          "governance_priority",
+          "approved_use_status",
+          "risk_note",
+          "applicable_controls",
+          "known_limitations",
+          "mitigation_measures",
+          "monitoring_owner",
+          "review_frequency",
+          "lifecycle_status",
+          "last_review_date",
+          "next_review_date"
+        ],
+        "properties": {
+          "id": {"type": "string"},
+          "system_name": {"type": "string"},
+          "business_owner": {"type": "string"},
+          "service_area": {"type": "string"},
+          "purpose": {"type": "string"},
+          "workflow": {"type": "string"},
+          "target_users": {"type": "array", "items": {"type": "string"}},
+          "affected_groups": {"type": "array", "items": {"type": "string"}},
+          "languages": {"type": "array", "items": {"type": "string"}},
+          "document_types": {"type": "array", "items": {"type": "string"}},
+          "data_categories": {"type": "array", "items": {"type": "string"}},
+          "personal_data": {"type": "boolean"},
+          "special_category_data": {"type": "boolean"},
+          "confidential_information": {"type": "boolean"},
+          "provider_type": {"type": "string"},
+          "processing_location": {"type": "string"},
+          "approved_tools": {"type": "array", "items": {"type": "string"}},
+          "source_requirements": {"type": "string"},
+          "human_review": {"type": "string"},
+          "authorised_approver": {"type": "string"},
+          "automated_decision_impact": {"type": "string"},
+          "dpia_review": {"type": "string"},
+          "procurement_status": {"type": "string"},
+          "governance_priority": {
+            "type": "string",
+            "enum": ["Low", "Medium", "High", "Critical"]
+          },
+          "approved_use_status": {
+            "type": "string",
+            "enum": ["Approved", "Approved with conditions", "Restricted", "Not approved"]
+          },
+          "risk_note": {"type": "string"},
+          "applicable_controls": {"type": "array", "items": {"type": "string"}},
+          "known_limitations": {"type": "array", "items": {"type": "string"}},
+          "mitigation_measures": {"type": "array", "items": {"type": "string"}},
+          "monitoring_owner": {"type": "string"},
+          "review_frequency": {"type": "string"},
+          "lifecycle_status": {"type": "string"},
+          "last_review_date": {"type": "string", "format": "date"},
+          "next_review_date": {"type": "string", "format": "date"}
+        }
+      }
+    }
+  }
+}
